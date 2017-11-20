@@ -1,3 +1,4 @@
+#--coding:utf8--!--
 #!/usr/bin/python
 __author__ = 'Mitch Matuson, Mustafa Ozgur'
 __copyright__ = """

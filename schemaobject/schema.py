@@ -1,3 +1,4 @@
+#--coding:utf8--!--
 from schemaobject.connection import DatabaseConnection
 from schemaobject.database import database_schema_builder
 

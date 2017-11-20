@@ -1,3 +1,4 @@
+#--coding:utf8--!--
 import pymysql
 import re
 
@@ -89,7 +90,8 @@ class DatabaseConnection(object):
         kwargs = parse_database_url(connection_url)
         if not (kwargs and kwargs['protocol'] == 'mysql'):
             raise TypeError("Connection protocol must be MySQL!")
-
+	
+	kwargs['charset']='utf8'
         self.db = kwargs.get('db', None)
         self.host = kwargs.get('host', 'localhost')
         self.port = kwargs.get('port', 3306)

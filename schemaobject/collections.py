@@ -1,3 +1,4 @@
+#--coding:utf8--!--
 class OrderedDict(dict):
     """
     A Dictionary whose items are returned in the order they were first added

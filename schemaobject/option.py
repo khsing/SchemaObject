@@ -1,3 +1,4 @@
+#--coding:utf8--!--
 class SchemaOption(object):
     """
     Object representation of a database or table option

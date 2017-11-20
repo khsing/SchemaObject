@@ -1,3 +1,4 @@
+#--coding:utf8--!--
 import re
 from schemaobject.collections import OrderedDict
 from schemaobject.column import column_schema_builder

@@ -1,3 +1,4 @@
+#--coding:utf8--!--
 #!/usr/bin/env python
 from setuptools import setup
 
