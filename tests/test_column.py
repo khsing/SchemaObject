@@ -1,12 +1,12 @@
 #!/usr/bin/python
 import unittest
 import schemaobject
-
+from . import TEST_DATABASE_URL
 
 class TestColumnSchema(unittest.TestCase):
 
     def setUp(self):
-        self.database_url = "mysql://root:root@localhost:3306/"
+        self.database_url = TEST_DATABASE_URL
         self.db = schemaobject.SchemaObject(self.database_url + 'sakila', charset='utf8')
         self.db = self.db.selected
 
@@ -33,10 +33,10 @@ class TestColumnSchema(unittest.TestCase):
                          self.db.tables['film'].columns['special_features'].type)
 
     def test_column_charset(self):
-        self.assertEqual("utf8", self.db.tables['customer'].columns['last_name'].charset)
+        self.assertEqual("utf8mb4", self.db.tables['customer'].columns['last_name'].charset)
 
     def test_column_collation(self):
-        self.assertEqual("utf8_general_ci", self.db.tables['customer'].columns['last_name'].collation)
+        self.assertEqual("utf8mb4_general_ci", self.db.tables['customer'].columns['last_name'].collation)
 
     def test_read_column_null(self):
         self.assertTrue(self.db.tables['customer'].columns['email'].null)
@@ -140,7 +140,7 @@ class TestColumnSchema(unittest.TestCase):
         self.db.tables['customer'].options['collation'].value = 'latin1_general_ci'
 
         self.assertEqual(
-            "`first_name` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL AFTER `store_id`",
+            "`first_name` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL AFTER `store_id`",
             self.db.tables['customer'].columns['first_name'].define(after='store_id'))
 
     def test_column_after(self):

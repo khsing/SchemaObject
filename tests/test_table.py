@@ -3,11 +3,12 @@
 import unittest
 import schemaobject
 
+from . import TEST_DATABASE_URL
 class TestTableSchema(unittest.TestCase):
 
     def setUp(self):
-        self.database_url = "mysql://root:root@localhost:3306/"
-        self.db = schemaobject.SchemaObject(self.database_url + 'sakila', charset='utf8')
+        self.database_url = TEST_DATABASE_URL
+        self.db = schemaobject.SchemaObject(self.database_url + 'sakila', charset='utf8mb4')
         self.db = self.db.selected
 
     def test_table_count(self):
@@ -25,10 +26,10 @@ class TestTableSchema(unittest.TestCase):
         self.assertEqual("InnoDB", self.db.tables['address'].options['engine'].value)
 
     def test_table_option_charset(self):
-        self.assertEqual("utf8", self.db.tables['address'].options['charset'].value)
+        self.assertEqual("utf8mb4", self.db.tables['address'].options['charset'].value)
 
     def test_table_option_collation(self):
-        self.assertEqual("utf8_general_ci", self.db.tables['address'].options['collation'].value)
+        self.assertEqual("utf8mb4_general_ci", self.db.tables['address'].options['collation'].value)
 
     def test_table_option_row_format(self):
         self.assertEqual("Compact", self.db.tables['address'].options['row_format'].value)
@@ -61,7 +62,7 @@ class TestTableSchema(unittest.TestCase):
         self.assertEqual("ALTER TABLE `address`", self.db.tables['address'].alter())
 
     def test_table_create(self):
-        stub = 'CREATE TABLE `actor` ( `actor_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT, `first_name` varchar(45) NOT NULL, `last_name` varchar(45) NOT NULL, `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (`actor_id`), KEY `idx_actor_last_name` (`last_name`)) ENGINE=InnoDB DEFAULT CHARSET=utf8;'
+        stub = 'CREATE TABLE `actor` ( `actor_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT, `first_name` varchar(45) NOT NULL, `last_name` varchar(45) NOT NULL, `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (`actor_id`), KEY `idx_actor_last_name` (`last_name`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;'
         self.assertEqual(stub, self.db.tables['actor'].create())
 
     def test_table_drop(self):

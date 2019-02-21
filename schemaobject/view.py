@@ -9,7 +9,7 @@ def view_schema_builder(database):
     v = OrderedDict()
 
     sql = """
-        SELECT TABLE_NAME 
+        SELECT TABLE_NAME
         FROM information_schema.views
         WHERE TABLE_SCHEMA = '%s'
         ORDER BY TABLE_NAME

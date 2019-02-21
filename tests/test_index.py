@@ -2,12 +2,13 @@
 import unittest
 import schemaobject
 
+from . import TEST_DATABASE_URL
 
 class TestIndexSchema(unittest.TestCase):
 
     def setUp(self):
-        self.database_url = "mysql://root:root@localhost:3306/"
-        self.db = schemaobject.SchemaObject(self.database_url + 'sakila', charset='utf8')
+        self.database_url = TEST_DATABASE_URL
+        self.db = schemaobject.SchemaObject(self.database_url + 'sakila', charset='utf8mb4')
         self.db = self.db.selected
 
     def test_format_sub_part_with_length(self):

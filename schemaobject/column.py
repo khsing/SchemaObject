@@ -1,6 +1,11 @@
 #coding:utf-8
 from schemaobject.collections import OrderedDict
 
+try:
+    unicode
+except NameError:
+    unicode = str
+
 
 def column_schema_builder(table):
     """

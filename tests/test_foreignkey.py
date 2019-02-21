@@ -3,12 +3,13 @@ import re
 import unittest
 import schemaobject
 
+from . import TEST_DATABASE_URL
 
 class TestForeignKeySchema(unittest.TestCase):
 
     def setUp(self):
-        self.database_url = "mysql://root:root@localhost:3306/"
-        self.schema = schemaobject.SchemaObject(self.database_url + 'sakila', charset='utf8')
+        self.database_url = TEST_DATABASE_URL
+        self.schema = schemaobject.SchemaObject(self.database_url + 'sakila', charset='utf8mb4')
         self.fk = self.schema.selected.tables['rental'].foreign_keys
 
     def test_fk_exists(self):
