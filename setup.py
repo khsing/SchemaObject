@@ -1,11 +1,11 @@
-#--coding:utf8--!--
 #!/usr/bin/env python
+#coding: utf-8
 from setuptools import setup
 
 setup(
     name='schema-object',
     packages=['schemaobject'],
-    version='0.5.8',
+    version='0.5.9',
     description="Iterate over a MySQL database schema as a Python object.",
     author="Mitch Matuson, Mustafa Ozgur",
     author_email="code@matuson.com, root@mit.sh",

@@ -1,4 +1,4 @@
-#--coding:utf8--!--
+#coding: utf-8
 from schemaobject.connection import DatabaseConnection
 from schemaobject.database import database_schema_builder
 

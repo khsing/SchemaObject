@@ -1,4 +1,4 @@
-#--coding:utf8--!--
+#coding:utf-8
 from schemaobject.option import SchemaOption
 from schemaobject.table import table_schema_builder
 from schemaobject.procedure import procedure_schema_builder
@@ -27,10 +27,9 @@ def database_schema_builder(instance):
     if conn.db:
         sql += " WHERE SCHEMA_NAME = %s"
         params = conn.db
+        databases = conn.execute(sql, (params,))
     else:
-        params = None
-
-    databases = conn.execute(sql, (params,))
+        databases = conn.execute(sql)
 
     if not databases:
         return d

@@ -1,6 +1,16 @@
-#--coding:utf8--!--
+#coding:utf-8
 import pymysql
 import re
+
+try:
+    basestring
+except NameError:
+    basestring = str
+
+try:
+    unicode
+except NameError:
+    unicode = str
 
 REGEX_RFC1738 = re.compile(r'''
             (?P<protocol>\w+)://
@@ -47,7 +57,7 @@ def parse_database_url(url):
 def build_database_url(host, protocol='mysql', username='root', password='', port=3306, database=None):
     if password:
         password = ':' + password
-    result = "%s://%s%s@%s:%i/" % (protocol, username, password, host, port,)
+    result = "%s://%s:%s@%s:%i/" % (protocol, username, password, host, port,)
     if database:
         result = result + database
     return result
@@ -90,8 +100,8 @@ class DatabaseConnection(object):
         kwargs = parse_database_url(connection_url)
         if not (kwargs and kwargs['protocol'] == 'mysql'):
             raise TypeError("Connection protocol must be MySQL!")
-	
-	kwargs['charset']='utf8'
+
+        kwargs['charset']='utf8'
         self.db = kwargs.get('db', None)
         self.host = kwargs.get('host', 'localhost')
         self.port = kwargs.get('port', 3306)
